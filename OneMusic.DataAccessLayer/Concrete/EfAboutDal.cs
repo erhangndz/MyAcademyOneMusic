@@ -14,6 +14,7 @@ namespace OneMusic.DataAccessLayer.Concrete
     {
         public EfAboutDal(OneMusicContext context) : base(context)
         {
+
         }
 
       
