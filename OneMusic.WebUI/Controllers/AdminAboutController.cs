@@ -6,7 +6,7 @@ using OneMusic.EntityLayer.Entities;
 
 namespace OneMusic.WebUI.Controllers
 {
-
+    
     public class AdminAboutController : Controller
     {
         private readonly IAboutService _aboutService;
