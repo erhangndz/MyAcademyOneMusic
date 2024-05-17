@@ -11,5 +11,7 @@ namespace OneMusic.DataAccessLayer.Abstract
     {
         List<Album> GetAlbumsWithSinger();
 
+        List<Album> GetAlbumsByArtist(int id);
+
     }
 }

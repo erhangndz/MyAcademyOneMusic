@@ -1,4 +1,5 @@
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using OneMusic.BusinessLayer.Abstract;
 using OneMusic.BusinessLayer.Concrete;
@@ -32,13 +33,18 @@ builder.Services.AddValidatorsFromAssemblyContaining<SingerValidator>();
 builder.Services.AddDbContext<OneMusicContext>();
 builder.Services.AddControllersWithViews(option =>
 {
-    option.Filters.Add(new AuthorizeFilter());
+
+    var authorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+
+    option.Filters.Add(new AuthorizeFilter(authorizePolicy));
 });
 
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Login/Index";
+    options.AccessDeniedPath = "/ErrorPage/AccessDenied";
+    options.LogoutPath = "/Login/Logout";
     
 });
 
@@ -52,15 +58,28 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+
+app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404/", "?code{0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Default}/{action=Index}/{id?}");
+
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+});
 
 app.Run();
