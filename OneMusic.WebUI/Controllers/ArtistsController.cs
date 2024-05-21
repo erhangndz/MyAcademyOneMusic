@@ -18,7 +18,6 @@ namespace OneMusic.WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var values = await _userManager.GetUsersInRoleAsync("Artist");
-
             return View(values);
         }
 

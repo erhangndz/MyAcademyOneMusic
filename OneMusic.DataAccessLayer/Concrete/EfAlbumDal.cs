@@ -26,9 +26,6 @@ namespace OneMusic.DataAccessLayer.Concrete
            
         }
 
-        public List<Album> GetAlbumsWithSinger()
-        {
-            return _context.Albums.Include(x=>x.Singer).ToList();
-        }
+        
     }
 }
