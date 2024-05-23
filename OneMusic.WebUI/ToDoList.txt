@@ -1,0 +1,9 @@
+﻿
+
+şarkı dosyadan eklenecek artist tarafında
+albüme göre ve sanatçıya göre şarkıların getirileceği bir alan
+album/index içinde dropdown ile filtreleme yaparak albümleri getirme
+Dropdowna selectlistitem yöntemi tag helper ile anlatılacak.
+
+
+

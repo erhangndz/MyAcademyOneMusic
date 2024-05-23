@@ -51,5 +51,23 @@ namespace OneMusic.BusinessLayer.Validators
 			};
 		}
 
-	}
+        public override IdentityError InvalidUserName(string? userName)
+        {
+            return new IdentityError
+            {
+                Description = "Bu Kullanıcı adını kullanamazsınız"
+            };
+        }
+
+        public override IdentityError DuplicateUserName(string userName)
+        {
+            return new IdentityError
+            {
+                Description = "Bu Kullanıcı adı daha önce alınmıştır."
+            };
+        }
+
+
+
+    }
 }

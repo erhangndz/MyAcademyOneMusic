@@ -11,5 +11,7 @@ namespace OneMusic.BusinessLayer.Abstract
     {
 
         List<Album> TGetAlbumsByArtist(int id);
+
+        public List<Album> TGetAlbumswithArtist();
     }
 }
